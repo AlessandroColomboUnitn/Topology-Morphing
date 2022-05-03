@@ -87,7 +87,6 @@ class TrafficSlicing(app_manager.RyuApp):
     #when a match is not found in a switch table
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
-        print("allah")
         msg = ev.msg
         datapath = msg.datapath
         in_port = msg.match["in_port"]
