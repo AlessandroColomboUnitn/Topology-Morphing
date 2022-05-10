@@ -64,7 +64,9 @@ def defineNet():
     net.start()
     info('\n*** Testing Network\n')
     net.pingAll()
+    net.stop()
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
+    setLogLevel( 'info' )
     defineNet()
