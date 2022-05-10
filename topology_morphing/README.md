@@ -1,7 +1,6 @@
 # Topology Morphing #
 
 We start with the following simple star topology:
-        
          h2        
          |
          |
@@ -12,9 +11,8 @@ We ping all the host to be sure that the controller works and everyone is connec
 
 # Task 2: Modify the topology of the network
 First we disable all switch-host links. Then, we add new virtual links to connect h1 and h3 with h2 (who embedds a linux router) obtaining the following topology:
-
         s1
-
+        
 h1------h2------h3
 
 # Task 3: Make sure that the router correctly delivers all the packets
