@@ -61,24 +61,24 @@ def defineNet():
     info( '\n')
     net.pingAll()
 
-    info( '\n\n*** Topology Morphing:\n')
+    info( '\n\n**** Topology Morphing ****\n\n')
 
-    info( '*** Stopping hosts-switch connections ...\n')
+    info( '*** Stopping hosts-switch connections...\n')
     net.configLinkStatus("h1", "s1", "down")
     net.configLinkStatus("h2", "s1", "down")
     net.configLinkStatus("h3", "s1", "down")
 
-    info( '*** Creating new hosts-router links:\n' )
+    info( '*** Creating new hosts-router links...\n' )
     net.addLink( h1, h2, intfName1='h1-eth1', intfName2='h2-eth1', params1={'ip' : "192.168.1.101/24"}, params2={'ip' : "192.168.1.1/24"} ) #params1={'ip' : '192.168.1.101/16'}, params2={ 'ip' : "192.168.1.2/16" })
     net.addLink( h3, h2, intfName1='h3-eth1', intfName2='h2-eth2', params1={'ip' : "192.168.3.101/24"}, params2={'ip' : "192.168.3.1/24"})#, intfName1='h3-eth1', params1={'ip' : '192.168.3.101/16'}, intfName2='h2-eth2', params2={ 'ip' : "192.168.3.2/16" })
     
-    info( '*** Changing hosts default routes:\n')
+    info( '*** Changing hosts default routes...\n')
     h1.cmd("ip route add default via 192.168.1.1")
     h3.cmd("ip route add default via 192.168.3.1")
     h2.cmd("ip route add 192.168.1.0 via 192.168.1.1")
     h2.cmd("ip route add 192.168.3.0 via 192.168.1.3")
 
-    info('*** h2 routing table:')
+    info('\n*** h2 routing table:\n')
     info( net[ 'h2' ].cmd( 'route' ) )
 
 
@@ -88,7 +88,7 @@ def defineNet():
     #info( '*** Running CLI\n' )
     #CLI( net )
     
-    info( '*** Stopping network\n' )
+    info( '\n*** Stopping network\n' )
     net.stop()
 
 if __name__ == '__main__':
