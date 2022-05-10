@@ -24,7 +24,7 @@ class LinuxRouter( Node ):
         self.cmd( 'sysctl net.ipv4.ip_forward=0' )
         super( LinuxRouter, self ).terminate()
 
-def defineNet():
+def run():
 
     "Create a star network "
 
@@ -88,4 +88,4 @@ def defineNet():
 
 if __name__ == '__main__':
     setLogLevel( 'info' )
-    defineNet()
+    run()
