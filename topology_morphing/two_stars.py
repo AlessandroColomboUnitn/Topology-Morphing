@@ -66,4 +66,5 @@ def defineNet():
     net.pingAll()
 
 
-    
+if __name__ == 'main':
+    defineNet()
