@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-"""
-This example shows how to create an empty Mininet object
-(without a topology object) and add nodes to it manually.
-"""
-
 from ipaddress import ip_address
 from mininet.topo import Topo
 from mininet.net import Mininet
@@ -13,7 +8,7 @@ from mininet.node import RemoteController
 from mininet.log import setLogLevel, info
 from mininet.cli import CLI
 from mininet.util import dumpNodeConnections
-#sfrom nullswitch import NullSwitch
+
 
 # Node implementing a linux router, source: https://github.com/mininet/mininet/blob/master/examples/linuxrouter.py
 class LinuxRouter( Node ):
