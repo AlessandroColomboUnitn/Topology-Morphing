@@ -4,17 +4,15 @@ from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.ofproto import ofproto_v1_3
 from ryu.lib.packet import packet
-from ryu.lib.packet import ipv4
-from ryu.lib.packet import icmp
-from ryu.lib.packet import arp
 from ryu.lib.packet import ethernet
 
-class TrafficSlicing(app_manager.RyuApp):
+#Controller class based on: comnetsemu/app/software_defined_networks_examples/ex03/switch_13.py
+class TopologyMorphing(app_manager.RyuApp):
     
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
     
     def __init__(self, *args, **kwargs):
-        super(TrafficSlicing, self).__init__(*args, **kwargs)
+        super(TopologyMorphing, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
