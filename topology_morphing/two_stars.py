@@ -55,19 +55,20 @@ def defineNet():
     net.addLink( h2, s1) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h3, s1) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
     net.addLink( h4, s1) #, intfName2='s1-eth0', params2={ 'ip' : "192.168.1.1/16})"""
-    net.addLink( h9, s1)
 
     net.addLink( h5, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h6, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
     net.addLink( h7, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h8, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
-    net.addLink( h9, s2)
+
+    net.addLink( h9, s1, intfName1='h9-eth1', intfName2='s2-eth1', params1={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( h9, s2, intfName1='h9-eth2', intfName2='s2-eth1', params1={'ip' : "192.168.2.254/24"} )
 
 
 
     info( '*** Starting network\n')
     net.start()
-    
+
     info('\n*** Testing Network #1\n')
     net.pingAll()
 
@@ -76,8 +77,7 @@ def defineNet():
     net.configLinkStatus("h9", "s1", "down")
     net.configLinkStatus("h9", "s2", "down")
 
-    net.addLink( h9, s1, intfName1='h9-eth1', intfName2='s2-eth1', params1={'ip' : "192.168.1.254/24"} ) 
-    net.addLink( h9, s2, intfName1='h9-eth2', intfName2='s2-eth1', params1={'ip' : "192.168.2.254/24"} )
+    
 
     info( '*** Changing hosts default routes...\n')
 
