@@ -81,7 +81,7 @@ def run():
     dumpNodeConnections(net.hosts)
     net.pingAll()
     #info( '*** Running CLI\n' )
-    #CLI( net )
+    CLI( net )
     
     info( '\n*** Stopping network\n' )
     net.stop()
