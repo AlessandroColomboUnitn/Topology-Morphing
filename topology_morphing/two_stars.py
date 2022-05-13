@@ -61,8 +61,8 @@ def defineNet():
     net.addLink( h7, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h8, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
 
-    net.addLink( s1, h9, intfName1='s1-eth1', intfName2='h9-eth1', params2={'ip' : "192.168.1.254/24"} ) 
-    net.addLink( s2, h9, intfName1='s2-eth2', intfName2='h9-eth1', params2={'ip' : "192.168.2.254/24"} )
+    net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth0', params2={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( s2, h9, intfName1='s2-eth5', intfName2='h9-eth1', params2={'ip' : "192.168.2.254/24"} )
 
 
     info( '*** Starting network\n')
@@ -73,12 +73,9 @@ def defineNet():
 
     info('\n*** Topology Morphing\n')
 
-    net.configLinkStatus("s1", "h9", "down")
-    net.configLinkStatus("s2", "h9", "down")
+    #net.configLinkStatus("s1", "h9", "down")
+    #net.configLinkStatus("s2", "h9", "down")
 
-
-
-    
 
     info( '*** Changing hosts default routes...\n')
 
@@ -96,7 +93,7 @@ def defineNet():
     h9.cmd("ip route add 192.168.2.0/24 via 192.168.2.254/24")
 
     info('\n*** Testing Network #2\n')
-    net.pingall()
+    net.pingAll()
 
 
 
