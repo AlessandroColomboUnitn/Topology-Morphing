@@ -71,14 +71,7 @@ def defineNet():
     info('\n*** Testing Network #1\n')
     net.pingAll()
 
-    info('\n*** Topology Morphing\n')
-
-    net.configLinkStatus("s1", "h9", "down")
-    net.configLinkStatus("s2", "h9", "down")
-
-
-
-    
+    info('\n*** Topology Morphing\n')    
 
     info( '*** Changing hosts default routes...\n')
 
