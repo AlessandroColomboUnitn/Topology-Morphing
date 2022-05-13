@@ -61,8 +61,13 @@ def defineNet():
     net.addLink( h7, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h8, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
 
+<<<<<<< HEAD
     net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth0', params2={'ip' : "192.168.1.254/24"} ) 
     net.addLink( s2, h9, intfName1='s2-eth5', intfName2='h9-eth1', params2={'ip' : "192.168.2.254/24"} )
+=======
+    net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth1', params2={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( s2, h9, intfName1='s2-eth5', intfName2='h9-eth2', params2={'ip' : "192.168.2.254/24"} )
+>>>>>>> 800b73b37ab28f1b26562fba7e796fe7b9d4af4a
 
 
     info( '*** Starting network\n')
@@ -71,11 +76,15 @@ def defineNet():
     info('\n*** Testing Network #1\n')
     net.pingAll()
 
+<<<<<<< HEAD
     info('\n*** Topology Morphing\n')
 
     #net.configLinkStatus("s1", "h9", "down")
     #net.configLinkStatus("s2", "h9", "down")
 
+=======
+    info('\n*** Topology Morphing\n')    
+>>>>>>> 800b73b37ab28f1b26562fba7e796fe7b9d4af4a
 
     info( '*** Changing hosts default routes...\n')
 
@@ -94,11 +103,16 @@ def defineNet():
 
     info('\n*** Testing Network #2\n')
     net.pingAll()
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 800b73b37ab28f1b26562fba7e796fe7b9d4af4a
 
 
+    
 
+    CLI(net)
     net.stop() 
 
 
