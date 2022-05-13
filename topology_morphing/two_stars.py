@@ -74,8 +74,8 @@ def defineNet():
 
     info('\n*** Topology Morphing\n')
 
-    net.configLinkStatus("h9", "s1", "down")
-    net.configLinkStatus("h9", "s2", "down")
+    #net.configLinkStatus("h9", "s1", "down")
+    #net.configLinkStatus("h9", "s2", "down")
 
     
 
