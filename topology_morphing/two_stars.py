@@ -61,8 +61,11 @@ def defineNet():
     net.addLink( h7, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h8, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
 
-    net.addLink( h9, s1, intfName1='h9-eth1', intfName2='s2-eth1', params1={'ip' : "192.168.1.254/24"} ) 
-    net.addLink( h9, s2, intfName1='h9-eth2', intfName2='s2-eth1', params1={'ip' : "192.168.2.254/24"} )
+    net.addLink( h9, s1) 
+    net.addLink( h9, s2)
+
+    net.addLink( s1, h9, intfName1='s1-eth1', intfName2='h9-eth1', params2={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( s2, h9, intfName1='s2-eth2', intfName2='h9-eth1', params2={'ip' : "192.168.2.254/24"} )
 
 
 
@@ -74,25 +77,28 @@ def defineNet():
 
     info('\n*** Topology Morphing\n')
 
-    #net.configLinkStatus("h9", "s1", "down")
-    #net.configLinkStatus("h9", "s2", "down")
+    net.configLinkStatus("h9", "s1", "down")
+    net.configLinkStatus("h9", "s2", "down")
+
+    net.addLink( s1, h9, intfName1='s1-eth1', intfName2='h9-eth1', params2={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( s2, h9, intfName1='s2-eth2', intfName2='h9-eth1', params2={'ip' : "192.168.2.254/24"} )
 
     
 
     info( '*** Changing hosts default routes...\n')
 
-    h1.cmd("ip route add default via 192.168.1.254")
-    h2.cmd("ip route add default via 192.168.1.254")
-    h3.cmd("ip route add default via 192.168.1.254")
-    h4.cmd("ip route add default via 192.168.1.254")
+    h1.cmd("ip route add default via 192.168.1.254/24")
+    h2.cmd("ip route add default via 192.168.1.254/24")
+    h3.cmd("ip route add default via 192.168.1.254/24")
+    h4.cmd("ip route add default via 192.168.1.254/24")
 
-    h5.cmd("ip route add default via 192.168.2.254")
-    h6.cmd("ip route add default via 192.168.2.254")
-    h7.cmd("ip route add default via 192.168.2.254")
-    h8.cmd("ip route add default via 192.168.2.254")
+    h5.cmd("ip route add default via 192.168.2.254/24")
+    h6.cmd("ip route add default via 192.168.2.254/24")
+    h7.cmd("ip route add default via 192.168.2.254/24")
+    h8.cmd("ip route add default via 192.168.2.254/24")
 
-    h9.cmd("ip route add 192.168.1.0 via 192.168.1.254")
-    h9.cmd("ip route add 192.168.2.0 via 192.168.2.254")
+    h9.cmd("ip route add 192.168.1.0/24 via 192.168.1.254/24")
+    h9.cmd("ip route add 192.168.2.0/24 via 192.168.2.254/24")
 
     info('\n*** Testing Network #2\n')
     net.pingall()
