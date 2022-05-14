@@ -61,8 +61,8 @@ def defineNet():
     net.addLink( h7, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
     net.addLink( h8, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
 
-    net.addLink( s1, h9, intfName1='s1-eth1', intfName2='h9-eth1', params2={'ip' : "192.168.1.254/24"} ) 
-    net.addLink( s2, h9, intfName1='s2-eth2', intfName2='h9-eth1', params2={'ip' : "192.168.2.254/24"} )
+    net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth1', params2={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( s2, h9, intfName1='s2-eth5', intfName2='h9-eth2', params2={'ip' : "192.168.2.254/24"} )
 
 
     info( '*** Starting network\n')
