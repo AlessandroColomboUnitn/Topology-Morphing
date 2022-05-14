@@ -26,7 +26,7 @@ class LinuxRouter( Node ):
 
 def run():
 
-    "Create a star network "
+    "Create a star network"
 
     net = Mininet( controller = RemoteController, waitConnected=True  )
 
