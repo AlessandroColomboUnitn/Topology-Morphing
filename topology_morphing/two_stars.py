@@ -92,9 +92,9 @@ def defineNet():
     net.pingAll()
 
 
+    
 
-
-
+    CLI(net)
     net.stop() 
 
 
