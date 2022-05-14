@@ -1,4 +1,4 @@
-# Topology Morphing #
+# Topology Morphing: Star Example#
 
 We start with the following simple star topology:
 ```text
@@ -26,3 +26,10 @@ We have to re-define the default gateway of other hosts so that they send packet
 - $sudo mn -c
 - $ryu-manager topology_morphing.py &
 - $sudo python3 star.py
+
+# Topology Moprhing: Two Stars #
+
+# Run the exammple with: #
+- $sudo mn -c
+- $ryu-manager topology_morphing.py &
+- $sudo python3 two_stars.py
