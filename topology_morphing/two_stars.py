@@ -89,7 +89,7 @@ def defineNet():
     h9.cmd("ip route add 192.168.2.0/24 via 192.168.2.254/24")
 
     info('\n*** Testing Network #2\n')
-    net.pingall()
+    net.pingAll()
 
 
 
