@@ -29,7 +29,7 @@ We have to re-define the default gateway of other hosts so that they send packet
 
 # Topology Moprhing: Two Stars #
 
-# Run the exammple with: #
+# Run the example with: #
 - $sudo mn -c
 - $ryu-manager topology_morphing.py &
 - $sudo python3 two_stars.py
