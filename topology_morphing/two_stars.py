@@ -28,6 +28,12 @@ class LinuxRouter( Node ):
         self.cmd( 'sysctl net.ipv4.ip_forward=0' )
         super( LinuxRouter, self ).terminate()
 
+    def startRouting(self):
+        self.cmd( 'sysctl net.ipv4.ip_forward=1' )
+    
+    def stopRouting(self):
+        self.cmd( 'sysctl net.ipv4.ip_forward=0')
+
 
 def defineNet():
     net = Mininet( controller = RemoteController, waitConnected=True  )
@@ -50,19 +56,21 @@ def defineNet():
     h8 = net.addHost( 'h8', ip="192.168.2.4/24")
     h9 = net.addHost( 'h9', ip="192.168.1.254/24", cls=LinuxRouter)
 
-    net.addLink( h1, s1) #, intfName2='s1-eth0', params2={ 'ip' : "192.168.1.1/16})"""
-    net.addLink( h2, s1) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
-    net.addLink( h3, s1) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
-    net.addLink( h4, s1) #, intfName2='s1-eth0', params2={ 'ip' : "192.168.1.1/16})"""
+    net.addLink( h1, s1) 
+    net.addLink( h2, s1)
+    net.addLink( h3, s1)
+    net.addLink( h4, s1)
 
-    net.addLink( h5, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
-    net.addLink( h6, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
-    net.addLink( h7, s2) #, intfName2='s1-eth1', params2={ 'ip' : "192.168.2.1/16" })""" 
-    net.addLink( h8, s2) #, intfName2='s1-eth2', params2={ 'ip' : "192.168.3.1/16" })""" 
+    net.addLink( h5, s2)
+    net.addLink( h6, s2)
+    net.addLink( h7, s2)  
+    net.addLink( h8, s2)
 
     net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth1') 
     net.addLink( s2, h9, intfName1='s2-eth5', intfName2='h9-eth2', params2={'ip' : "192.168.2.254/24"} )
     
+    net.configLinkStatus("s1", "h9", "down")
+    net.configLinkStatus("s2", "h9", "down")
     
     info( '*** Starting network\n')
     net.start()
@@ -72,6 +80,9 @@ def defineNet():
     net.pingAll()
 
     info('\n*** Topology Morphing\n')    
+
+    net.configLinkStatus("s1", "h9", "up")
+    net.configLinkStatus("s2", "h9", "up")
 
     info( '*** Changing hosts default routes...\n')
 
