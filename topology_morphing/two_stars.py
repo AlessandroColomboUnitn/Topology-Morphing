@@ -12,6 +12,7 @@ from mininet.node import Node
 from mininet.node import RemoteController
 from mininet.log import setLogLevel, info
 from mininet.cli import CLI
+import time
 from mininet.util import dumpNodeConnections
 
 # Node implementing a linux router, source: https://github.com/mininet/mininet/blob/master/examples/linuxrouter.py
@@ -75,15 +76,20 @@ def defineNet():
     info( '*** Starting network\n')
     net.start()
 
-    
+
     info('\n*** Testing Network #1\n')
-    net.pingAll()
+    #net.pingAll()
 
     info('\n*** Topology Morphing\n')    
 
     net.configLinkStatus("s1", "h9", "up")
     net.configLinkStatus("s2", "h9", "up")
 
+    h9.cmd("wireshark -i h9-eth1 --display-filter icmp -k &")
+    h9.cmd("wireshark -i h9-eth2 --display-filter icmp -k &")
+
+    time.sleep(6)
+    
     info( '*** Changing hosts default routes...\n')
 
     h1.cmd("ip route add default via 192.168.1.254")
@@ -101,9 +107,6 @@ def defineNet():
 
     info('\n*** Testing Network #2\n')
     net.pingAll()
-
-
-    
 
     CLI(net)
     net.stop() 

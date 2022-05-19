@@ -54,6 +54,9 @@ def run():
     info( '*** Hosts connections:\n')
     dumpNodeConnections(net.hosts)
     info( '\n')
+
+    h2.cmd("wireshark -i h9-eth1 -f icmp -k &")
+
     net.pingAll()
 
     info( '\n\n**** Topology Morphing ****\n\n')
