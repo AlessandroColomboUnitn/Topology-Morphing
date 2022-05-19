@@ -67,8 +67,7 @@ def defineNet():
     net.addLink( h7, s2)  
     net.addLink( h8, s2)
 
-   
-    net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth3', params2={'ip' : "192.168.1.254/24"} ) 
+    net.addLink( s1, h9, intfName1='s1-eth5', intfName2='h9-eth1') 
     net.addLink( s2, h9, intfName1='s2-eth5', intfName2='h9-eth2', params2={'ip' : "192.168.2.254/24"} )
     
     net.configLinkStatus("s1", "h9", "down")
@@ -79,7 +78,7 @@ def defineNet():
 
 
     info('\n*** Testing Network #1\n')
-    #net.pingAll()
+    net.pingAll()
 
     info('\n*** Topology Morphing\n')    
 
@@ -108,8 +107,6 @@ def defineNet():
 
     info('\n*** Testing Network #2\n')
     net.pingAll()
-
-
 
 
     CLI(net)
