@@ -108,7 +108,6 @@ def defineNet():
     info('\n*** Testing Network #2\n')
     net.pingAll()
 
-
     CLI(net)
     net.stop() 
 

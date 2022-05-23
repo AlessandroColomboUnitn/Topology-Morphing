@@ -8,7 +8,7 @@ from mininet.node import RemoteController
 from mininet.log import setLogLevel, info
 from mininet.cli import CLI
 from mininet.util import dumpNodeConnections
-
+import time
 
 # Node implementing a linux router, source: https://github.com/mininet/mininet/blob/master/examples/linuxrouter.py
 class LinuxRouter( Node ):
@@ -26,7 +26,7 @@ class LinuxRouter( Node ):
 
 def run():
 
-    "Create a star network"
+    "Create a star network "
 
     net = Mininet( controller = RemoteController, waitConnected=True  )
 
@@ -54,6 +54,7 @@ def run():
     info( '*** Hosts connections:\n')
     dumpNodeConnections(net.hosts)
     info( '\n')
+
     net.pingAll()
 
     info( '\n\n**** Topology Morphing ****\n\n')
@@ -67,6 +68,9 @@ def run():
     net.addLink( h1, h2, intfName1='h1-eth1', intfName2='h2-eth1', params1={'ip' : "192.168.1.101/24"}, params2={'ip' : "192.168.1.1/24"} ) #params1={'ip' : '192.168.1.101/16'}, params2={ 'ip' : "192.168.1.2/16" })
     net.addLink( h3, h2, intfName1='h3-eth1', intfName2='h2-eth2', params1={'ip' : "192.168.3.101/24"}, params2={'ip' : "192.168.3.1/24"})#, intfName1='h3-eth1', params1={'ip' : '192.168.3.101/16'}, intfName2='h2-eth2', params2={ 'ip' : "192.168.3.2/16" })
     
+    h2.cmd("wireshark -i h2-eth1 --display-filter icmp -k &")
+    time.sleep(4)
+
     info( '*** Changing hosts default routes...\n')
     h1.cmd("ip route add default via 192.168.1.1")
     h3.cmd("ip route add default via 192.168.3.1")
@@ -81,7 +85,7 @@ def run():
     dumpNodeConnections(net.hosts)
     net.pingAll()
     #info( '*** Running CLI\n' )
-    #CLI( net )
+    CLI( net )
     
     info( '\n*** Stopping network\n' )
     net.stop()
